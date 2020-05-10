@@ -1,28 +1,20 @@
-import java.util.Scanner;
+import java.util.List;
 
 public class TransactionRead {
     public static void main(String[] args) {
-        final String WYDATEK = "W";
-        final String PRZYCHÓD = "P";
-        String transactionType;
 
-        Scanner scanner = new Scanner(System.in);
+        TransactionType type = TransactionUtils.inputTransactionType();
 
-        do {
-            System.out.println("Podaj typ transakcji");
-            System.out.println("'W' - WYDATEK");
-            System.out.println("'P' - PRZYCHÓD");
-            transactionType = scanner.nextLine().toUpperCase();
+        TransactionDao dao = new TransactionDao();
+        List<Transaction> transactions = dao.read(type);
 
+        if (transactions.isEmpty()) {
+            System.out.println("Lista jest pusta");
+        } else {
+            for (Transaction transaction : transactions) {
+                System.out.println(transaction.toString());
+            }
         }
-        while (!(transactionType.equals(WYDATEK) || transactionType.equals(PRZYCHÓD)));
-
-        BudzetDao dao = new BudzetDao();
-
-        TransactionType type = transactionType.equals(WYDATEK) ? TransactionType.WYDATEK : TransactionType.PRZYCHÓD;
-
-
-        dao.read(type);
 
     }
 }

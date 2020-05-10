@@ -1,11 +1,62 @@
+import java.util.Date;
+import java.util.Scanner;
+
 public class TransactionUtils {
 
-    public static Transaction inputTransactionInformation(){
-
+    public static Transaction addNewTransaction() {
+        Transaction transaction = inputTransactionInformation();
+        return transaction;
     }
 
-    public static TransactionType inputTransactionType(){
+    public static Transaction editTransaction(long id) {
+        Transaction transaction = inputTransactionInformation();
+        transaction.setId(id);
+        return transaction;
+    }
 
+    private static Transaction inputTransactionInformation() {
+        Scanner scanner = new Scanner(System.in);
+        TransactionType type = inputTransactionType();
+        System.out.println("Dodaj opis transakcji");
+        String description = scanner.nextLine();
+        System.out.println("Podaj kwote");
+        double amount = scanner.nextDouble();
+        scanner.nextLine();
+        java.sql.Date date = inputDate(scanner);
+
+        return new Transaction(type, description, amount, date);
+    }
+
+    public static TransactionType inputTransactionType() {
+        Scanner scanner = new Scanner(System.in);
+
+        String type;
+
+        while (true) {
+            System.out.println("Podaj typ transakcji. 'W' jeśli wydatek, 'P' jeśli przychód");
+            type = scanner.nextLine();
+            type = type.toUpperCase();
+            switch (type) {
+                case "W":
+                    return TransactionType.WYDATEK;
+                case "P":
+                    return TransactionType.PRZYCHÓD;
+            }
+        }
+    }
+
+    public static java.sql.Date inputDate(Scanner scanner) {
+        System.out.println("Wpisz rok transakcji");
+        int year = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Wpisz miesiąc transakcji");
+        int month = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Podaj dzień miesiąca transakcji");
+        int day = scanner.nextInt();
+        scanner.nextLine();
+
+        return new java.sql.Date(year, month, day);
     }
 
 

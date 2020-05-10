@@ -1,18 +1,18 @@
 import java.util.Scanner;
 
-public class TransactionUpdate {
+public class TransactionDelete {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Podaj id transakcji którą chcesz edytować");
+        System.out.println("Podaj id transakcji którą chcesz usunąć");
         long id = scanner.nextLong();
         scanner.nextLine();
 
-        Transaction transaction = TransactionUtils.editTransaction(id);
-
         TransactionDao dao = new TransactionDao();
-        dao.update(transaction);
-
+        dao.delete(id);
+        System.out.println("Usunięto");
 
     }
+
 }

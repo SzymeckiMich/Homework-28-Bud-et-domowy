@@ -1,14 +1,12 @@
-import java.util.Date;
-
 public class Transaction {
     private Long id;
     private TransactionType type;
     private String description;
     private double amount;
-    private Date date;
+    private java.sql.Date date;
 
 
-    public Transaction(Long id, TransactionType type, String description, double amount, Date date) {
+    public Transaction(Long id, TransactionType type, String description, double amount, java.sql.Date date) {
         this.id = id;
         this.type = type;
         this.description = description;
@@ -16,7 +14,11 @@ public class Transaction {
         this.date = date;
     }
 
-    public Transaction(TransactionType type, String description, double amount, Date date) {
+    public long getId() {
+        return id;
+    }
+
+    public Transaction(TransactionType type, String description, double amount, java.sql.Date date) {
         this(null, type, description, amount, date);
     }
 
@@ -32,8 +34,28 @@ public class Transaction {
         return amount;
     }
 
-    public Date getDate() {
+    public java.sql.Date getDate() {
         return date;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setType(TransactionType type) {
+        this.type = type;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setDate(java.sql.Date date) {
+        this.date = date;
     }
 
     @Override

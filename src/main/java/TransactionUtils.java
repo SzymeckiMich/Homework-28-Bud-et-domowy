@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class TransactionUtils {
@@ -22,7 +22,7 @@ public class TransactionUtils {
         System.out.println("Podaj kwote");
         double amount = scanner.nextDouble();
         scanner.nextLine();
-        java.sql.Date date = inputDate(scanner);
+        LocalDate date = inputDate(scanner);
 
         return new Transaction(type, description, amount, date);
     }
@@ -45,7 +45,7 @@ public class TransactionUtils {
         }
     }
 
-    public static java.sql.Date inputDate(Scanner scanner) {
+    public static LocalDate inputDate(Scanner scanner) {
         System.out.println("Wpisz rok transakcji");
         int year = scanner.nextInt();
         scanner.nextLine();
@@ -56,8 +56,8 @@ public class TransactionUtils {
         int day = scanner.nextInt();
         scanner.nextLine();
 
-        return new java.sql.Date(year, month, day);
+        LocalDate date = LocalDate.of(year, month, day);
+
+        return date;
     }
-
-
 }

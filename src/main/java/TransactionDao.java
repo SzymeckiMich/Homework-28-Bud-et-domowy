@@ -1,4 +1,7 @@
+import javax.xml.crypto.Data;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +20,8 @@ public class TransactionDao {
             statement.setString(1, transaction.getType().name());
             statement.setString(2, transaction.getDescription());
             statement.setDouble(3, transaction.getAmount());
-            statement.setDate(4, (Date) transaction.getDate());
+            statement.setDate(4, Date.valueOf(transaction.getDate()));
+
             statement.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Nie udało się zapisac rekordu");
@@ -45,7 +49,13 @@ public class TransactionDao {
                 TransactionType transactionType = TransactionType.valueOf(resultSet.getString("type"));
                 String description = resultSet.getString("description");
                 double amount = resultSet.getDouble("amount");
-                java.sql.Date date = resultSet.getDate("date");
+
+                String[] splitDate = resultSet.getString("date").split("-");
+                int year = Integer.parseInt(splitDate[0]);
+                int month = Integer.parseInt(splitDate[1]);
+                int day = Integer.parseInt(splitDate[2]);
+
+                LocalDate date = LocalDate.of(year, month, day);
 
                 Transaction transaction = new Transaction(id, transactionType, description, amount, date);
 
@@ -61,6 +71,7 @@ public class TransactionDao {
         return null;
     }
 
+
     //UPDATE
     public void update(Transaction transaction) {
         Connection connection = connect();
@@ -71,7 +82,7 @@ public class TransactionDao {
             statement.setString(1, transaction.getType().name());
             statement.setString(2, transaction.getDescription());
             statement.setDouble(3, transaction.getAmount());
-            statement.setDate(4, transaction.getDate());
+            statement.setDate(4, Date.valueOf(transaction.getDate()));
             statement.setLong(5, transaction.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -81,6 +92,7 @@ public class TransactionDao {
 
         closeConnection(connection);
     }
+
 
     //DELETE
     public void delete(long id) {
@@ -124,6 +136,5 @@ public class TransactionDao {
             e.printStackTrace();
         }
     }
-
 }
 

@@ -1,12 +1,14 @@
+import java.time.LocalDate;
+
 public class Transaction {
     private Long id;
     private TransactionType type;
     private String description;
     private double amount;
-    private java.sql.Date date;
+    private LocalDate date;
 
 
-    public Transaction(Long id, TransactionType type, String description, double amount, java.sql.Date date) {
+    public Transaction(Long id, TransactionType type, String description, double amount, LocalDate date) {
         this.id = id;
         this.type = type;
         this.description = description;
@@ -18,7 +20,7 @@ public class Transaction {
         return id;
     }
 
-    public Transaction(TransactionType type, String description, double amount, java.sql.Date date) {
+    public Transaction(TransactionType type, String description, double amount, LocalDate date) {
         this(null, type, description, amount, date);
     }
 
@@ -34,7 +36,7 @@ public class Transaction {
         return amount;
     }
 
-    public java.sql.Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -54,7 +56,7 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public void setDate(java.sql.Date date) {
+    public void setLocalDate(LocalDate date) {
         this.date = date;
     }
 

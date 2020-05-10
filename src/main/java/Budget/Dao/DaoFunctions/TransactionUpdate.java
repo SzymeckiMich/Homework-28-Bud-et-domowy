@@ -1,3 +1,8 @@
+package Budget.Dao.DaoFunctions;
+
+import Budget.Dao.TransactionDao;
+import Budget.TransactionsElements.Transaction;
+
 import java.util.Scanner;
 
 public class TransactionUpdate {
@@ -8,7 +13,7 @@ public class TransactionUpdate {
         long id = scanner.nextLong();
         scanner.nextLine();
 
-        Transaction transaction = TransactionUtils.editTransaction(id);
+        Transaction transaction = DaoUtils.editTransaction(id);
 
         TransactionDao dao = new TransactionDao();
         dao.update(transaction);

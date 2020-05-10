@@ -1,3 +1,5 @@
+package Budget.TransactionsElements;
+
 import java.time.LocalDate;
 
 public class Transaction {

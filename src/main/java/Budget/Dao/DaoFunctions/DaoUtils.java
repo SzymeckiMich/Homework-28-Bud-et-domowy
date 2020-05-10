@@ -1,7 +1,12 @@
+package Budget.Dao.DaoFunctions;
+
+import Budget.TransactionsElements.Transaction;
+import Budget.TransactionsElements.TransactionType;
+
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class TransactionUtils {
+public class DaoUtils {
 
     public static Transaction addNewTransaction() {
         Transaction transaction = inputTransactionInformation();

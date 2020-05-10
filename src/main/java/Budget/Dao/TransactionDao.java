@@ -1,3 +1,8 @@
+package Budget.Dao;
+
+import Budget.TransactionsElements.Transaction;
+import Budget.TransactionsElements.TransactionType;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;

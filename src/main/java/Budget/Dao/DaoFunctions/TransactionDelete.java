@@ -1,3 +1,7 @@
+package Budget.Dao.DaoFunctions;
+
+import Budget.Dao.TransactionDao;
+
 import java.util.Scanner;
 
 public class TransactionDelete {

@@ -6,6 +6,5 @@ public class TransactionSave {
         TransactionDao dao = new TransactionDao();
 
         dao.save(transaction);
-
     }
 }

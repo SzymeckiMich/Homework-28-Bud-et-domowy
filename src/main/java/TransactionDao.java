@@ -1,13 +1,9 @@
-import javax.xml.crypto.Data;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class TransactionDao {
-
 
     //CREATE
     public void save(Transaction transaction) {
@@ -30,7 +26,6 @@ public class TransactionDao {
         closeConnection(connection);
     }
 
-
     // READ
     public List<Transaction> read(TransactionType type) {
         Connection connection = connect();
@@ -49,18 +44,10 @@ public class TransactionDao {
                 TransactionType transactionType = TransactionType.valueOf(resultSet.getString("type"));
                 String description = resultSet.getString("description");
                 double amount = resultSet.getDouble("amount");
-
-                String[] splitDate = resultSet.getString("date").split("-");
-                int year = Integer.parseInt(splitDate[0]);
-                int month = Integer.parseInt(splitDate[1]);
-                int day = Integer.parseInt(splitDate[2]);
-
-                LocalDate date = LocalDate.of(year, month, day);
-
-                Transaction transaction = new Transaction(id, transactionType, description, amount, date);
-
-                transactions.add(transaction);
+                LocalDate date = resultSet.getDate("date").toLocalDate();
+                transactions.add(new Transaction(id, transactionType, description, amount, date));
             }
+            closeConnection(connection);
             return transactions;
 
         } catch (SQLException e) {
@@ -70,7 +57,6 @@ public class TransactionDao {
         closeConnection(connection);
         return null;
     }
-
 
     //UPDATE
     public void update(Transaction transaction) {
@@ -89,10 +75,8 @@ public class TransactionDao {
             System.err.println("Nie udało się zaktualizować");
             ex.printStackTrace();
         }
-
         closeConnection(connection);
     }
-
 
     //DELETE
     public void delete(long id) {
@@ -107,10 +91,8 @@ public class TransactionDao {
             System.err.println("Nie udało się usunąć");
             ex.printStackTrace();
         }
-
         closeConnection(connection);
     }
-
 
     private Connection connect() {
         try {
@@ -125,7 +107,6 @@ public class TransactionDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 

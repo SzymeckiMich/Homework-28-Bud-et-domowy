@@ -12,6 +12,7 @@ public class App {
             System.out.println("2 - wyszukiwanie");
             System.out.println("3 - edycja");
             System.out.println("4 - usuwanie");
+            System.out.println("0 - koniec programu");
 
             String userinput = scanner.nextLine();
 
@@ -33,9 +34,6 @@ public class App {
                 default:
                     System.out.println("Zły wybór");
             }
-
-
         }
-
     }
 }

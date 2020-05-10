@@ -35,8 +35,7 @@ public class TransactionUtils {
         while (true) {
             System.out.println("Podaj typ transakcji. 'W' jeśli wydatek, 'P' jeśli przychód");
             type = scanner.nextLine();
-            type = type.toUpperCase();
-            switch (type) {
+            switch (type.toUpperCase()) {
                 case "W":
                     return TransactionType.WYDATEK;
                 case "P":

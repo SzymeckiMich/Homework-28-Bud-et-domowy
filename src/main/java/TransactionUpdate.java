@@ -12,7 +12,5 @@ public class TransactionUpdate {
 
         TransactionDao dao = new TransactionDao();
         dao.update(transaction);
-
-
     }
 }

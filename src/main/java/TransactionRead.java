@@ -9,12 +9,11 @@ public class TransactionRead {
         List<Transaction> transactions = dao.read(type);
 
         if (transactions.isEmpty()) {
-            System.out.println("Lista jest pusta");
+            System.out.println("Brak transakcji");
         } else {
             for (Transaction transaction : transactions) {
                 System.out.println(transaction.toString());
             }
         }
-
     }
 }

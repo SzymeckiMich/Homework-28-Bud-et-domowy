@@ -8,7 +8,6 @@ public class TransactionDao {
     //CREATE
     public void save(Transaction transaction) {
         Connection connection = connect();
-
         String insertTransaction = "INSERT INTO transaction(type, description, amount, date) VALUES (?, ?, ?, ?)";
 
         try {
@@ -17,7 +16,6 @@ public class TransactionDao {
             statement.setString(2, transaction.getDescription());
             statement.setDouble(3, transaction.getAmount());
             statement.setDate(4, Date.valueOf(transaction.getDate()));
-
             statement.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Nie udało się zapisac rekordu");
@@ -30,9 +28,7 @@ public class TransactionDao {
     public List<Transaction> read(TransactionType type) {
         Connection connection = connect();
         PreparedStatement statement = null;
-
         List<Transaction> transactions = new ArrayList<>();
-
         try {
             String selectTransactionsWithType = "SELECT * FROM transaction WHERE type = ?";
             statement = connection.prepareStatement(selectTransactionsWithType);

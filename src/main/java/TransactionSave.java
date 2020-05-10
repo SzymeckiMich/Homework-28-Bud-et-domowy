@@ -4,7 +4,6 @@ public class TransactionSave {
         Transaction transaction = TransactionUtils.addNewTransaction();
 
         TransactionDao dao = new TransactionDao();
-
         dao.save(transaction);
     }
 }

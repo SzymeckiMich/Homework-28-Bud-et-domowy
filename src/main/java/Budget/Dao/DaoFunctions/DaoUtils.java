@@ -34,9 +34,7 @@ public class DaoUtils {
 
     public static TransactionType inputTransactionType() {
         Scanner scanner = new Scanner(System.in);
-
         String type;
-
         while (true) {
             System.out.println("Podaj typ transakcji. 'W' jeśli wydatek, 'P' jeśli przychód");
             type = scanner.nextLine();
@@ -59,9 +57,7 @@ public class DaoUtils {
         System.out.println("Podaj dzień miesiąca transakcji");
         int day = scanner.nextInt();
         scanner.nextLine();
-
         LocalDate date = LocalDate.of(year, month, day);
-
         return date;
     }
 }
